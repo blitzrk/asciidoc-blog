@@ -1,0 +1,8 @@
+h2 > a {
+	all: inherit;
+
+	&:hover {
+		color: inherit;
+		text-decoration: underline;
+	}
+}

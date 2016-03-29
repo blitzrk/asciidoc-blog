@@ -51,13 +51,17 @@ function posts(cb) {
   var walker = walk.walk('./_posts');
 
   walker.on('file', function(root, stat, next) {
-    files.push(new File({
-      cwd: "/",
-      base: Path.join("/", root),
-      path: Path.join("/", root, stat.name),
-      contents: fs.readFileSync(Path.join(__dirname, root, stat.name))
-    }));
-    next();
+    fs.readFile(Path.join(__dirname, root, stat.name), function(err, contents) {
+      if(err) throw err;
+
+      files.push(new File({
+        cwd: "/",
+        base: Path.join("/", root),
+        path: Path.join("/", root, stat.name),
+        contents: contents
+      }));
+      next();
+    });
   });
 
   walker.on('end', function() {

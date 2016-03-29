@@ -2,6 +2,7 @@
 Ben Krieger <blitzrk@gmail.com>
 27 Mar 2016
 :toc:
+:toc-title: Recent Posts
 :toc-placement: preamble
 
 This is Ben Krieger's blog.

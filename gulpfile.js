@@ -2,17 +2,19 @@ var gulp = require('gulp');
 var sass = require('gulp-sass');
 var post = require('./post');
 var order = require('gulp-order');
+var layout = require('./layout');
 var concatCss = require('gulp-concat-css');
 var webserver = require('gulp-webserver');
 var asciidoctor = require('gulp-asciidoctor');
 
 gulp.task('layout', function() {
-  return gulp.src('./*.adoc')
+  return gulp.src(['*.adoc', '!README.adoc'])
     .pipe(post.inject())
     .pipe(asciidoctor({
       header_footer: false,
       attributes: ['showtitle', 'stylesdir=/css', 'stylesheet=bundle.css']
     }))
+    .pipe(layout())
     .pipe(gulp.dest('dist'))
 });
 
@@ -48,7 +50,7 @@ gulp.task('serve', ['build'], function() {
 });
 
 gulp.task('watch', function() {
-  gulp.watch('./**/*.adoc', ['adoc']);
+  gulp.watch(['./**/*.adoc', '!README.adoc'], ['adoc']);
   gulp.watch(['_sass/**/*', '_css/**/*'], ['style']);
 });
 

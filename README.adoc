@@ -11,9 +11,9 @@ static site at `dist/`.
 
 == To Do
 
-- [*] Bemoan GitHub's Asciidoc styling
+- [x] Bemoan GitHub's Asciidoc styling
 - [ ] Sidebar with responsive design
 - [ ] Sidebar static links
 - [ ] Sidebar collapsable posts links
-- [ ] Links from Home to posts
+- [x] Links from Home to posts
 - [ ] Deploy with Travis CI

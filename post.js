@@ -113,11 +113,9 @@ module.exports = function() {
 }
 
 module.exports.inject = function(n) {
-  var number = n || 10;
-
   return through.obj(function(file, enc, cb) {
     posts(function(files) {
-      var files = files.slice(0, n);
+      var files = files.slice(0, n || 10);
       var contents = file.contents.toString();
       contents = inject(contents, files);
 

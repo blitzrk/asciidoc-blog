@@ -46,6 +46,17 @@ function header(file) {
   return file;
 }
 
+function postURI(post) {
+  var date = post.date.toArray().slice(0,3);
+  date[1] += 1;
+  date = date.map(function(n) { return n.toString(); });
+
+  var path;
+  path = Path.join.apply(null, date);
+  path = Path.join(path, post.slug.substring(0,30));
+  return Path.join("post", path);
+}
+
 function posts(cb) {
   var files = [];
   var walker = walk.walk('./_posts');
@@ -79,12 +90,12 @@ function posts(cb) {
   });
 }
 
-function inject(contents, files) {
-  files.forEach(function(file) {
+function inject(contents, posts) {
+  posts.forEach(function(post) {
     contents += "\n";
-    contents += "== " + file.title;
+    contents += "== link:/" + postURI(post) + "[" + post.title + "]";
     contents += "\n";
-    contents += file.description || "Placeholder text";
+    contents += post.description || "Placeholder text";
     contents += "\n";
   });
   return contents
@@ -122,13 +133,6 @@ module.exports.rename = function() {
 
 module.exports.dest = function(dir) {
   return gulp.dest(function(file) {
-    var date = file._post.date.toArray().slice(0,3);
-    date[1] += 1;
-    date = date.map(function(n) { return n.toString(); });
-
-    var path;
-    path = Path.join.apply(null, date);
-    path = Path.join(path, file._post.slug.substring(0,30));
-    return Path.join(dir, "post", path);
+    return Path.join(dir, postURI(file._post));
   });
 };

@@ -1,0 +1,24 @@
+<<<
+title: First post
+author: Ben Krieger <blitzrk@gmail.com>
+date: 2016-03-27
+<<<
+
+= Building a Blog with GitHub Pages
+Ben Krieger <blitzrk@gmail.com>
+:linkcss:
+:toc:
+
+Using asciidoc!
+
+Lorem ipsum
+
+== Section 1
+
+asdf
+
+'''
+
+Test stuff
+
+'''

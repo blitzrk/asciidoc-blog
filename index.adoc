@@ -1,0 +1,11 @@
+= Blog
+Ben Krieger <blitzrk@gmail.com>
+27 Mar 2016
+:toc:
+:toc-placement: preamble
+
+This is Ben Krieger's blog.
+
+== Building a Blog with GitHub Pages
+
+Using asciidoc!

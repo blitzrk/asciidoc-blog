@@ -16,6 +16,9 @@ function extract(file) {
   var contents = file.contents.toString();
   var header = contents.split("\n\n", 1)[0].split('\n')
     .filter(function(line) { return ! line.startsWith(':'); });
+  var description = contents.substring(
+    contents.indexOf("\n\n"),
+    contents.indexOf("=="));
 
   return {
     title: header[0] && header[0].startsWith('= ') && header[0].substring(2, 
@@ -24,8 +27,9 @@ function extract(file) {
     email: header[1] &&
       header[1].substring(header[1].indexOf('<')+1, header[1].indexOf('>')).trim(),
     date: header[2] && header[2].substring(
-        header[2].startsWith('v') ? header[2].indexOf(',') + 1 : 0,
-        header[2].includes(':') ? header[2].indexOf(':') : header[2].length).trim()
+      header[2].startsWith('v') ? header[2].indexOf(',') + 1 : 0,
+      header[2].includes(':') ? header[2].indexOf(':') : header[2].length).trim(),
+    description: description
   };
 }
 

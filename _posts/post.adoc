@@ -4,9 +4,7 @@ v0.0.1, 2016-03-27: Comment
 :linkcss:
 :toc:
 
-Using asciidoc!
-
-Lorem ipsum
+This is the preamble. Blah blah blah.
 
 == Section 1
 

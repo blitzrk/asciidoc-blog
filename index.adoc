@@ -5,7 +5,3 @@ Ben Krieger <blitzrk@gmail.com>
 :toc-placement: preamble
 
 This is Ben Krieger's blog.
-
-== Building a Blog with GitHub Pages
-
-Using asciidoc!

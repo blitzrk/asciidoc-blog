@@ -71,6 +71,17 @@ function posts(cb) {
   });
 }
 
+function inject(contents, files) {
+  files.forEach(function(file) {
+    contents += "\n";
+    contents += "== " + file.title;
+    contents += "\n";
+    contents += file.description || "Placeholder text";
+    contents += "\n";
+  });
+  return contents
+}
+
 module.exports = function() {
   return through.obj(function(file, enc, cb) {
     try {
@@ -87,6 +98,11 @@ module.exports.inject = function(n) {
 
   return through.obj(function(file, enc, cb) {
     posts(function(files) {
+      var files = files.slice(0, n);
+      var contents = file.contents.toString();
+      contents = inject(contents, files);
+
+      file.contents = new Buffer(contents);
       cb(null, file);
     });
   });

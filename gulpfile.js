@@ -10,7 +10,7 @@ gulp.task('layout', function() {
   return gulp.src('./*.adoc')
     .pipe(post.inject())
     .pipe(asciidoctor({
-      header_footer: false,
+      header_footer: true,
       attributes: ['showtitle', 'stylesdir=/css', 'stylesheet=bundle.css']
     }))
     .pipe(gulp.dest('dist'))

@@ -8,13 +8,10 @@ var asciidoctor = require('gulp-asciidoctor');
 
 gulp.task('layout', function() {
   return gulp.src('./*.adoc')
+    .pipe(post.inject())
     .pipe(asciidoctor({
-      header_footer: true,
-      attributes: [
-        'showtitle', 
-        'stylesdir=/css',
-        'stylesheet=bundle.css'
-      ]
+      header_footer: false,
+      attributes: ['showtitle', 'stylesdir=/css', 'stylesheet=bundle.css']
     }))
     .pipe(gulp.dest('dist'))
 });
@@ -24,11 +21,7 @@ gulp.task('posts', function() {
     .pipe(post())
     .pipe(asciidoctor({
       header_footer: true,
-      attributes: [
-        'showtitle', 
-        'stylesdir=/css',
-        'stylesheet=bundle.css'
-      ]
+      attributes: ['showtitle', 'stylesdir=/css', 'stylesheet=bundle.css']
     }))
     .pipe(post.rename())
     .pipe(post.dest('dist'))
@@ -39,7 +32,7 @@ gulp.task('adoc', ['layout', 'posts']);
 gulp.task('style', function() {
   return gulp.src(['_css/**/*', '_sass/**/*'])
     .pipe(sass({ includePaths: ['./_sass/'] }).on('error', sass.logError))
-    .pipe(order([]))
+    .pipe(order([])) // Alphabetize
     .pipe(concatCss('bundle.css'))
     .pipe(gulp.dest('dist/css'))
 });

@@ -1,7 +1,10 @@
+var fs = require('fs');
 var gulp = require('gulp');
 var Path = require('path');
 var slug = require('slug');
+var walk = require('walk');
 var gutil = require('gulp-util');
+var File = require('vinyl');
 var moment = require('moment');
 var rename = require('gulp-rename');
 var through = require('through2');
@@ -14,7 +17,7 @@ function extract(file) {
   var header = contents.split("\n\n", 1)[0].split('\n')
     .filter(function(line) { return ! line.startsWith(':'); });
 
-  header = {
+  return {
     title: header[0] && header[0].startsWith('= ') && header[0].substring(2, 
       header[0].includes(':') ? header[0].lastIndexOf(':') : header[0].length).trim(),
     author: header[1] && header[1].split(';')[0].split('<')[0].trim(),
@@ -24,8 +27,6 @@ function extract(file) {
         header[2].startsWith('v') ? header[2].indexOf(',') + 1 : 0,
         header[2].includes(':') ? header[2].indexOf(':') : header[2].length).trim()
   };
-
-  return header
 }
 
 function header(file) {
@@ -41,6 +42,35 @@ function header(file) {
   return file;
 }
 
+function posts(cb) {
+  var files = [];
+  var walker = walk.walk('./_posts');
+
+  walker.on('file', function(root, stat, next) {
+    files.push(new File({
+      cwd: "/",
+      base: Path.join("/", root),
+      path: Path.join("/", root, stat.name),
+      contents: fs.readFileSync(Path.join(__dirname, root, stat.name))
+    }));
+    next();
+  });
+
+  walker.on('end', function() {
+    files = files.map(function(f) {
+      try {
+        return header(f)._post;
+      } catch (err) {
+        throw new gutil.PluginError("Post", err.message);
+      }
+    });
+
+    cb(files.sort(function(a,b) {
+      return (a.date<b.date)-(a.date>b.date) // Most recent first
+    }));
+  });
+}
+
 module.exports = function() {
   return through.obj(function(file, enc, cb) {
     try {
@@ -49,6 +79,16 @@ module.exports = function() {
       throw new gutil.PluginError("Post", err.message);
     }
     cb(null, file);
+  });
+}
+
+module.exports.inject = function(n) {
+  var number = n || 10;
+
+  return through.obj(function(file, enc, cb) {
+    posts(function(files) {
+      cb(null, file);
+    });
   });
 }
 

@@ -1,0 +1,19 @@
+= Asciidoc Blog
+
+Simple blog generator for hosting on GitHub Pages using Node and Asciidoctor.js.
+
+== Installation
+
+To get your own blog set up, fork this repository and run `npm install` at the base.
+Then create posts (with proper headings!) in `_posts`. To run a test server, run
+`npm start` and to build for production, run `npm run build`, which will output your
+static site at `dist/`.
+
+== To Do
+
+- [*] Bemoan GitHub's Asciidoc styling
+- [ ] Sidebar with responsive design
+- [ ] Sidebar static links
+- [ ] Sidebar collapsable posts links
+- [ ] Links from Home to posts
+- [ ] Deploy with Travis CI

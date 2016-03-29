@@ -10,10 +10,7 @@ var asciidoctor = require('gulp-asciidoctor');
 gulp.task('layout', function() {
   return gulp.src(['*.adoc', '!README.adoc'])
     .pipe(post.inject())
-    .pipe(asciidoctor({
-      header_footer: false,
-      attributes: ['showtitle', 'stylesdir=/css', 'stylesheet=bundle.css']
-    }))
+    .pipe(asciidoctor({ header_footer: false }))
     .pipe(layout())
     .pipe(gulp.dest('dist'))
 });
@@ -21,10 +18,8 @@ gulp.task('layout', function() {
 gulp.task('posts', function() {
   return gulp.src('./_posts/**/*.adoc')
     .pipe(post())
-    .pipe(asciidoctor({
-      header_footer: true,
-      attributes: ['showtitle', 'stylesdir=/css', 'stylesheet=bundle.css']
-    }))
+    .pipe(asciidoctor({ header_footer: false }))
+    .pipe(layout())
     .pipe(post.rename())
     .pipe(post.dest('dist'))
 });

@@ -1,5 +1,1 @@
-:toc: macro
-:toc-title: Posts
-toc::[]
-
 This is Ben Krieger's blog.

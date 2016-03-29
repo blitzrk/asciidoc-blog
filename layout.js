@@ -9,18 +9,37 @@ var fromHTML = require('html-to-vdom')({
 });
 var VSN = require('asciidoctor.js')().Asciidoctor().$$scope.VERSION;
 
+function sidebar(posts) {
+  return h('div#sidebar', [
+    h('h2', 'krieg.io'),
+    h('ul', [
+      h('li', 'Resume'),
+      h('li', 'Posts'),
+      h('li', 'Code')
+    ]),
+    h('ul.social-links', [
+      h('li.social-link', [ h('a', {href: "https://github.com/blitzrk"}, 'Github') ]),
+      h('li.social-link', [ h('a', {href: "https://twitter.com/blitzrk"}, 'Twitter') ]),
+      h('li.social-link', [ h('a', {href: "https://linkedin.com/in/blitzrk"}, 'LinkedIn') ])
+    ])
+  ])
+}
+
 function render(content) {
   return h('html', [
     h('head', [
       h('meta', {charset: "UTF-8"}),
       h('meta', {name: "viewport", content: "width=device-width, initial-scale=1.0"}),
       h('meta', {name: "generator", content: "Asciidoctor "+VSN}),
-      h('title', config.title),
-      h('link', {rel: "stylesheet", href: config.css})
+      config.title && h('title', config.title),
+      config.css && h('link', {rel: "stylesheet", href: config.css})
     ]),
-    h('body.article', [
-      h('div#content', [
-        content
+    h('body', [
+      sidebar(),
+      h('div.article', [
+        h('div#content', [
+          content
+        ])
       ])
     ])
   ])

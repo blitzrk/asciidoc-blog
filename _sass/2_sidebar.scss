@@ -1,0 +1,20 @@
+#sidebar {
+	display: flex;
+	flex-direction: column;
+
+	ul {
+		display: flex;
+		flex-direction: column;
+		justify-content: start;
+	}
+
+	ul.social-links {
+		flex-direction: row;
+		justify-content: center;
+	}
+
+	li.social-link {
+		display: inline;
+		margin: 4px;
+	}
+}

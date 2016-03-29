@@ -1,0 +1,15 @@
+body {
+	display: flex;
+	flex-direction: row;
+}
+
+#sidebar {
+	width: 280px;
+	margin: 0px;
+	padding: 20px;
+	background-color: lightblue;
+}
+
+.article {
+	flex: 1;
+}

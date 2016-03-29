@@ -1,4 +1,5 @@
 {
 	"title": "krieg.io Blog",
-	"css": "/css/bundle.css"
+	"css": "/css/bundle.css",
+	"feedLength": 3
 }

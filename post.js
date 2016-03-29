@@ -4,6 +4,7 @@ var Path = require('path');
 var slug = require('slug');
 var walk = require('walk');
 var gutil = require('gulp-util');
+var config = require('./config');
 var File = require('vinyl');
 var moment = require('moment');
 var rename = require('gulp-rename');
@@ -112,10 +113,10 @@ module.exports = function() {
   });
 }
 
-module.exports.inject = function(n) {
+module.exports.inject = function() {
   return through.obj(function(file, enc, cb) {
     posts(function(files) {
-      var files = files.slice(0, n || 10);
+      var files = files.slice(0, config.feedLength || 10);
       var contents = file.contents.toString();
       contents = inject(contents, files);
 

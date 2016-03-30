@@ -1,3 +1,18 @@
+@import 'constants';
+
+h1, h2, h3, h4, h5, h6 {
+	color: $secondary-color;
+}
+
+h1 > a {
+	all: inherit;
+
+	&:hover {
+		color: inherit;
+		text-decoration: underline;
+	}
+}
+
 h2 > a {
 	all: inherit;
 

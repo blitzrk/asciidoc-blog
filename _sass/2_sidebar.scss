@@ -1,20 +1,54 @@
+@import 'constants';
+@import 'mixins';
+
 #sidebar {
+	h1 {
+		margin: 0.5em 0;
+		color: $secondary-color;
+		font-size: 3.25em;
+		font-weight: 500;
+	}
+
+	& > a, li > a, div {
+		color: inherit;
+		text-decoration: none;
+		font-size: 22;
+		margin: 0.25em 0;
+	}
+
+	div {
+		margin: 1em 0;
+		color: $tint-color;
+	}
+
+	a:hover {
+		text-decoration: underline;
+	}
+}
+
+ul.social-links {
+	margin: 2em 0;
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
+	justify-content: center;
+	list-style: none;
+}
 
-	ul {
-		display: flex;
-		flex-direction: column;
-		justify-content: start;
+li.social-link {
+	display: inline;
+	margin: 4px 8px;
+}
+
+.social-link {
+	display: inline-block;
+
+	&:hover .icon path {
+		fill: #333;
+		@include transition(all .2s ease);
 	}
 
-	ul.social-links {
-		flex-direction: row;
-		justify-content: center;
-	}
-
-	li.social-link {
-		display: inline;
-		margin: 4px;
+	&:hover .icon-inverted circle {
+		fill: #333;
+		@include transition(all .2s ease);
 	}
 }

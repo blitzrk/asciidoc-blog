@@ -1,15 +1,40 @@
+@import 'constants';
+
 body {
 	display: flex;
-	flex-direction: row;
 }
 
 #sidebar {
-	width: 280px;
+	display: flex;
+	flex-direction: column;
 	margin: 0px;
 	padding: 20px;
-	background-color: lightblue;
+	background-color: $primary-color;
 }
 
 .article {
 	flex: 1;
+}
+
+@media screen and (min-width: 320px) {
+	body {
+		flex-direction: column;
+	}
+	
+	#sidebar {
+		align-items: center;
+		width: 100%;
+	}
+}
+
+@media screen and (min-width: 720px) {
+	body {
+		flex-direction: row;
+	}
+
+	#sidebar {
+		width: 280px;
+		height: 100%;
+		align-items: flex-start;
+	}
 }

@@ -1,5 +1,8 @@
 {
 	"title": "krieg.io Blog",
 	"css": "/css/bundle.css",
-	"feedLength": 3
+	"feedLength": 3,
+	"github": "https://github.com/blitzrk",
+	"twitter": "https://twitter.com/blitzrk",
+	"linkedin": "https://linkedin.com/in/blitzrk"
 }

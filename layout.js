@@ -1,6 +1,7 @@
 var h = require('virtual-dom/h');
 var gutil = require('gulp-util');
 var config = require('./config');
+var social = require('./social');
 var through = require('through2');
 var toHTML = require('vdom-to-html');
 var fromHTML = require('html-to-vdom')({
@@ -11,17 +12,12 @@ var VSN = require('asciidoctor.js')().Asciidoctor().$$scope.VERSION;
 
 function sidebar(posts) {
   return h('div#sidebar', [
-    h('h2', 'krieg.io'),
-    h('ul', [
-      h('li', 'Resume'),
-      h('li', 'Posts'),
-      h('li', 'Code')
-    ]),
-    h('ul.social-links', [
-      h('li.social-link', [ h('a', {href: "https://github.com/blitzrk"}, 'Github') ]),
-      h('li.social-link', [ h('a', {href: "https://twitter.com/blitzrk"}, 'Twitter') ]),
-      h('li.social-link', [ h('a', {href: "https://linkedin.com/in/blitzrk"}, 'LinkedIn') ])
-    ])
+    h('h1', [ h('a', {href: "/"}, 'krieg.io') ]),
+    h('a', {href: "/resume"}, 'Resume'),
+    h('a', {href: "/post/all"}, 'Posts'),
+    h('div', 'Code:'),
+    h('a', {href: "https://packagecontrol.io/packages/Libsass%20Build"}, 'Libsass Build'),
+    social(['github', 'twitter', 'linkedin'])
   ])
 }
 

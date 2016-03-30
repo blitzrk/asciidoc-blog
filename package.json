@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "Blog generator for GitHub Pages using Asciidoc",
   "scripts": {
-    "start": "gulp || true",
-    "build": "gulp build || true"
+    "start": "gulp",
+    "build": "gulp build"
   },
   "repository": {
     "type": "git",
@@ -25,6 +25,8 @@
     "html-to-vdom": "^0.7.0",
     "moment": "^2.12.0",
     "slug": "^0.9.1",
+    "string.prototype.includes": "^1.0.0",
+    "string.prototype.startswith": "^0.2.0",
     "through2": "^2.0.1",
     "vdom-to-html": "^2.2.0",
     "vinyl": "^1.1.1",

@@ -43,6 +43,6 @@ if (typeof obj !== 'string') {
 - [x] Upgrade script to HTTPS
 - [x] All posts page
 - [x] Add favicon
-- [ ] Sidebar configuration
+- [x] Sidebar configuration
 - [ ] Deploy with Travis CI
 - [ ] Write first post

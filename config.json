@@ -4,9 +4,18 @@
 	"subtitle": "Ben Krieger's blog",
 	"css": "/css/bundle.css",
 	"feedLength": 5,
-	"github": "https://github.com/blitzrk",
-	"twitter": "https://twitter.com/blitzrk",
-	"linkedin": "https://linkedin.com/in/blitzrk",
+	"sidebar": [
+		[ "Resume", "/resume" ],
+		[ "Posts", "/posts" ],
+		[ "Code:", [
+			[ "Libsass Build", "https://packagecontrol.io/packages/Libsass%20Build" ]
+		]]
+	],
+	"social": [
+		[ "github", "https://github.com/blitzrk" ],
+		[ "twitter", "https://twitter.com/blitzrk" ],
+		[ "linkedin", "https://linkedin.com/in/blitzrk" ]
+	],
 	"https": true,
 	"httpsSubdomain": false
 }

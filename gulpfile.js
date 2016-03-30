@@ -1,8 +1,8 @@
 var gulp = require('gulp');
 var sass = require('gulp-sass');
-var post = require('./post');
+var post = require('./lib/post');
 var order = require('gulp-order');
-var layout = require('./layout');
+var layout = require('./lib/layout');
 var concatCss = require('gulp-concat-css');
 var webserver = require('gulp-webserver');
 var asciidoctor = require('gulp-asciidoctor');
@@ -27,8 +27,8 @@ gulp.task('posts', function() {
 gulp.task('adoc', ['layout', 'posts']);
 
 gulp.task('style', function() {
-  return gulp.src(['_css/**/*', '_sass/**/*'])
-    .pipe(sass({ includePaths: ['./_sass/'] }).on('error', sass.logError))
+  return gulp.src('_assets/sass/**/*')
+    .pipe(sass({ includePaths: ['_assets/sass/'] }).on('error', sass.logError))
     .pipe(order([])) // Alphabetize
     .pipe(concatCss('bundle.css'))
     .pipe(gulp.dest('dist/css'))
@@ -46,7 +46,7 @@ gulp.task('serve', ['build'], function() {
 
 gulp.task('watch', function() {
   gulp.watch(['./**/*.adoc', '!README.adoc'], ['adoc']);
-  gulp.watch(['_sass/**/*', '_css/**/*'], ['style']);
+  gulp.watch('_assets/sass/**/*', ['style']);
 });
 
 gulp.task('default', ['watch','serve']);

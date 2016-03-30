@@ -1,1 +1,3 @@
-This is Ben Krieger's blog.
+= Recent Posts
+
+&nbsp;

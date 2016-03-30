@@ -1,5 +1,7 @@
 {
-	"title": "krieg.io Blog",
+	"name": "Ben Krieger",
+	"title": "krieg.io",
+	"subtitle": "Ben Krieger's blog",
 	"css": "/css/bundle.css",
 	"feedLength": 3,
 	"github": "https://github.com/blitzrk",

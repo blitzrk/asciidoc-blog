@@ -2,6 +2,7 @@ var h = require('virtual-dom/h');
 var gutil = require('gulp-util');
 var config = require('./config');
 var social = require('./social');
+var moment = require('moment');
 var through = require('through2');
 var toHTML = require('vdom-to-html');
 var fromHTML = require('html-to-vdom')({
@@ -12,12 +13,18 @@ var VSN = require('asciidoctor.js')().Asciidoctor().$$scope.VERSION;
 
 function sidebar(posts) {
   return h('div#sidebar', [
-    h('h1', [ h('a', {href: "/"}, 'krieg.io') ]),
+    h('h1', [ h('a', {href: "/"}, config.title) ]),
+    h('h2', config.subtitle),
     h('a', {href: "/resume"}, 'Resume'),
     h('a', {href: "/post/all"}, 'Posts'),
     h('div', 'Code:'),
     h('a', {href: "https://packagecontrol.io/packages/Libsass%20Build"}, 'Libsass Build'),
-    social(['github', 'twitter', 'linkedin'])
+    social(['github', 'twitter', 'linkedin']),
+    h('p', [
+      'Custom built from ',
+      h('a', {href:"https://github.com/blitzrk/asciidoc-blog"}, 'blitzrk/asciidoc-blog')
+    ]),
+    h('p', '© ' + moment().format('YYYY') + ' ' + config.name)
   ])
 }
 

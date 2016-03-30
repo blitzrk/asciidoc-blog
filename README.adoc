@@ -17,4 +17,5 @@ static site at `dist/`.
 - [x] Links from Home to posts
 - [ ] All posts page
 - [ ] Sidebar collapsable posts links
+- [ ] Upgrade script to HTTPS
 - [ ] Deploy with Travis CI

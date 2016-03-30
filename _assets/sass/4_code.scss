@@ -1,0 +1,5 @@
+@import 'constants';
+
+pre.highlight, code.hljs {
+	background: $code-background !important;
+}

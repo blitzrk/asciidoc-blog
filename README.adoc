@@ -41,6 +41,6 @@ if (typeof obj !== 'string') {
 - [x] Sidebar static links
 - [x] Links from Home to posts
 - [x] Upgrade script to HTTPS
-- [ ] All posts page
+- [x] All posts page
 - [ ] Sidebar collapsable posts links
 - [ ] Deploy with Travis CI

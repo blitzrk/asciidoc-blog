@@ -7,8 +7,8 @@ var concatCss = require('gulp-concat-css');
 var webserver = require('gulp-webserver');
 var asciidoctor = require('gulp-asciidoctor');
 
-gulp.task('layout', function() {
-  return gulp.src(['*.adoc', '!README.adoc'])
+gulp.task('home', function() {
+  return gulp.src('index.adoc')
     .pipe(post.inject())
     .pipe(asciidoctor({ header_footer: false }))
     .pipe(layout())
@@ -24,7 +24,16 @@ gulp.task('posts', function() {
     .pipe(post.dest('dist'))
 });
 
-gulp.task('adoc', ['layout', 'posts']);
+gulp.task('allposts', function() {
+  return gulp.src('all.adoc')
+    .pipe(post.inject('all'))
+    .pipe(asciidoctor({ header_footer: false }))
+    .pipe(layout())
+    .pipe(post.rename())
+    .pipe(gulp.dest('dist/posts'))
+});
+
+gulp.task('adoc', ['home', 'posts', 'allposts']);
 
 gulp.task('style', function() {
   return gulp.src('_assets/sass/**/*')
@@ -34,7 +43,7 @@ gulp.task('style', function() {
     .pipe(gulp.dest('dist/css'))
 });
 
-gulp.task('js', ['layout'], function() {
+gulp.task('js', ['adoc'], function() {
   return gulp.src('_assets/js/**/*')
     .pipe(gulp.dest('dist/js'))
 });

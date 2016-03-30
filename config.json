@@ -6,5 +6,7 @@
 	"feedLength": 5,
 	"github": "https://github.com/blitzrk",
 	"twitter": "https://twitter.com/blitzrk",
-	"linkedin": "https://linkedin.com/in/blitzrk"
+	"linkedin": "https://linkedin.com/in/blitzrk",
+	"https": true,
+	"httpsSubdomain": false
 }

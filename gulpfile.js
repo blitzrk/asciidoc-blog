@@ -59,7 +59,7 @@ gulp.task('serve', ['build'], function() {
 });
 
 gulp.task('watch', function() {
-  gulp.watch(['./**/*.adoc', '!README.adoc'], ['adoc']);
+  gulp.watch(['./**/*.adoc', '!./README.adoc'], ['adoc']);
   gulp.watch('_assets/sass/**/*', ['style']);
   gulp.watch('_assets/js/**/*', ['js']);
 });

@@ -21,7 +21,8 @@ p a {
 }
 
 h1 > a {
-	all: inherit;
+	color: inherit;
+	text-decoration: none;
 
 	&:hover {
 		color: inherit;
@@ -30,7 +31,8 @@ h1 > a {
 }
 
 h2 > a {
-	all: inherit;
+	color: inherit;
+	text-decoration: none;
 
 	&:hover {
 		color: inherit;

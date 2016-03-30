@@ -9,6 +9,31 @@ Then create posts (with proper headings!) in `_posts`. To run a test server, run
 `npm start` and to build for production, run `npm run build`, which will output your
 static site at `dist/`.
 
+=== Patch reworkcss/css
+
+Until https://github.com/reworkcss/css/pull/89[PR #89] gets merged, edit `./node_modules/css/lib/parse/index.js` and around 584, wrap
+
+[source,javascript]
+----
+for (var k in obj) {
+  var value = obj[k];
+    if (Array.isArray(value)) {
+      value.forEach(function(v) { addParent(v, childParent); });
+    } else if (value && typeof value === 'object') {
+      addParent(value, childParent);
+    }
+}
+----
+
+in
+
+[source,javascript]
+----
+if (typeof obj !== 'string') {
+  ...
+}
+----
+
 == To Do
 
 - [x] Bemoan GitHub's Asciidoc styling

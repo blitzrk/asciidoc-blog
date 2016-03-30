@@ -17,7 +17,7 @@ gulp.task('layout', function() {
 
 gulp.task('posts', function() {
   return gulp.src('./_posts/**/*.adoc')
-    .pipe(post())
+    .pipe(post.attachMetadata())
     .pipe(asciidoctor({ header_footer: false }))
     .pipe(layout())
     .pipe(post.rename())
@@ -34,7 +34,12 @@ gulp.task('style', function() {
     .pipe(gulp.dest('dist/css'))
 });
 
-gulp.task('build', ['adoc', 'style']);
+gulp.task('js', ['layout'], function() {
+  return gulp.src('_assets/js/**/*')
+    .pipe(gulp.dest('dist/js'))
+});
+
+gulp.task('build', ['adoc', 'style', 'js']);
 
 gulp.task('serve', ['build'], function() {
   return gulp.src('dist')
@@ -47,6 +52,7 @@ gulp.task('serve', ['build'], function() {
 gulp.task('watch', function() {
   gulp.watch(['./**/*.adoc', '!README.adoc'], ['adoc']);
   gulp.watch('_assets/sass/**/*', ['style']);
+  gulp.watch('_assets/js/**/*', ['js']);
 });
 
 gulp.task('default', ['watch','serve']);

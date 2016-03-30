@@ -3,7 +3,7 @@
 	"title": "krieg.io",
 	"subtitle": "Ben Krieger's blog",
 	"css": "/css/bundle.css",
-	"feedLength": 3,
+	"feedLength": 5,
 	"github": "https://github.com/blitzrk",
 	"twitter": "https://twitter.com/blitzrk",
 	"linkedin": "https://linkedin.com/in/blitzrk"

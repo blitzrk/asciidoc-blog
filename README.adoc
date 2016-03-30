@@ -40,7 +40,7 @@ if (typeof obj !== 'string') {
 - [x] Sidebar with responsive design
 - [x] Sidebar static links
 - [x] Links from Home to posts
+- [x] Upgrade script to HTTPS
 - [ ] All posts page
 - [ ] Sidebar collapsable posts links
-- [ ] Upgrade script to HTTPS
 - [ ] Deploy with Travis CI

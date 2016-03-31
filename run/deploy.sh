@@ -13,12 +13,7 @@ shopt -u extglob
 npm install
 
 #patch reworkcss/css
-find ./node_modules -name index.js -type f | grep 'css/lib/parse' | xargs -n 1 sed -i "582a\\
-if (typeof obj !== 'string') {\\
-"
-find ./node_modules -name index.js -type f | grep 'css/lib/parse' | xargs -n 1 sed -i "591a\\
-}\\
-"
+bash ./run/patch.sh
 
 npm run build
 cd dist

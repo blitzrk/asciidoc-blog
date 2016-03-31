@@ -21,34 +21,22 @@ half way to a blog!
 To get your own blog set up, fork this repository and run `npm install` at the base.
 Unfortunately, there's currently a bug in a dependency's dependency, so we'll need
 to patch it. (There's already a PR in to fix it, so I'll update this when it gets
-merged.)
+merged.) For now, an install might look like this.
 
-=== Patch reworkcss/css
-
-Until https://github.com/reworkcss/css/pull/89[PR #89] gets merged, edit 
-`./node_modules/css/lib/parse/index.js` (or find with `find . -name parse -type d |
-grep css` around line 584, by wrapping
-
-[source,javascript]
+[source,bash]
 ----
-for (var k in obj) {
-  var value = obj[k];
-    if (Array.isArray(value)) {
-      value.forEach(function(v) { addParent(v, childParent); });
-    } else if (value && typeof value === 'object') {
-      addParent(value, childParent);
-    }
-}
+$ mkdir blog
+$ cd blog
+$ git init
+$ git remote add fork https://github.com/blitzrk/asciidoc-blog.git
+$ git remote add origin https://github.com/<user>/<repo>.git
+$ git pull fork master
+$ npm install
+$ ./run/patch.sh
+$ npm start
 ----
 
-in
-
-[source,javascript]
-----
-if (typeof obj !== 'string') {
-  ...
-}
-----
+Then you can update at any time with `./run/update.sh`, but you may have to perform a merge.
 
 == Usage
 

@@ -1,20 +1,21 @@
 {
-	"name": "Ben Krieger",
-	"title": "krieg.io",
-	"subtitle": "Ben Krieger's blog",
+	"name": "Your Name",
+	"title": "Website Name",
+	"subtitle": "My fantastic blog",
 	"css": "/css/bundle.css",
 	"feedLength": 5,
 	"sidebar": [
-		[ "Resume", "/resume" ],
-		[ "Posts", "/posts" ],
-		[ "Code:", [
-			[ "Libsass Build", "https://packagecontrol.io/packages/Libsass%20Build" ]
+		[ "Plz hire!", "/resume" ],
+		[ "My favorite site", "//neopets.com" ],
+		[ "All posts", "/posts" ],
+		[ "Code Samples:", [
+			[ "Fizz Buzz", "https://github.com/EnterpriseQualityCoding/FizzBuzzEnterpriseEdition" ]
 		]]
 	],
 	"social": [
-		[ "github", "https://github.com/blitzrk" ],
-		[ "twitter", "https://twitter.com/blitzrk" ],
-		[ "linkedin", "https://linkedin.com/in/blitzrk" ]
+		[ "github", "https://github.com/blazeit420" ],
+		[ "twitter", "https://twitter.com/blazeit420" ],
+		[ "linkedin", "https://linkedin.com/in/professional420" ]
 	],
 	"https": true,
 	"httpsSubdomain": false

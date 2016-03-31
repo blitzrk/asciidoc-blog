@@ -4,10 +4,10 @@ node_js:
 script: bash ./run/deploy.sh
 env:
   global:
-  - GH_NAME: Ben Krieger
-  - GH_EMAIL: blitzrk@gmail.com
-  - GH_REF: github.com/blitzrk/blitzrk.github.io.git
-  - GH_BRANCH: master
-  - secure: wRV3Ndy/KKcc4KFrPVu8EOYEndaIKhz6L8OQU+79C/jLHJHV79IEAjpAH7/Ml+odarYK3Gig89Ob/GDiclCbjwtx//bMIpCRwbpT+DkgmOOcIdAEHWcPLzjWkFSgP8unPqpHcQM7Ttb5Nexi84KkfFFyxu//gFTCyY7v94zOc9pqr4VsV+kz1ZMQNozfwc7D0n9g/TX9Xo8rB/VcnFv6dTxaR71/UO7WTD6lVexRvx36Ahtx9OgvxfGXkUpfXvpnXjCH+fYu/TFvvKH8dN3loH6BgJDZ/uZtHHi1IHTevo/Uc56GfqAOkJvKRPSfsd/BK5Fh6ukK1U92Bez8lhu27LFSzAJM4KwpdA+BzG+S5UKwyb4ZPaCefWw+uEBByXX4cUxLBa7Hm49dH/0PszWTRCf2FWZl3193G9SWL+7mFPksQzBplwC9Cuv+l7ohAN8Uplh+6T4oN6oQDyTdREako+EQLQ43/UAa5FgvFDMNTcII18DLTXm2oScnklZAjN9BV0CxgoPnjoEeilerj/dFZBMJCV8gsBgocLjY8mgqkBeH0rG42fsDJGqAvuR8o6aIryGEJ9K8xfaB1rpWwWrjK97UgBm95L1Bw3q6jclIhcISfYp2NUMqLq4PLsRIZkcPhl3B+Hr4NAnFiKpzNic1JQQdZqQ0Vyqo1DHwLhd6u+Y=
+  - GH_NAME: "<your name/Travis CI>"
+  - GH_EMAIL: "<email>"
+  - GH_REF: "github.com/<username>/<project>.git"
+  - GH_BRANCH: "<gh-pages/master>"
+  - secure: "<----- Your encrypted key here ----->"
 notifications:
     email: false

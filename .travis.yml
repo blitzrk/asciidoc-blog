@@ -11,3 +11,7 @@ env:
   - secure: "<----- Your encrypted key here ----->"
 notifications:
     email: false
+# whitelist
+branches:
+    only:
+    - master

@@ -13,12 +13,12 @@ shopt -u extglob
 npm install
 
 #patch reworkcss/css
-sed -i "582a\\
+find ./node_modules -name index.js -type f | grep 'css/lib/parse' | xargs -n 1 sed -i "582a\\
 if (typeof obj !== 'string') {\\
-" ./node_modules/gulp-concat-css/node_modules/rework/node_modules/css/lib/parse/index.js
-sed -i "591a\\
+"
+find ./node_modules -name index.js -type f | grep 'css/lib/parse' | xargs -n 1 sed -i "591a\\
 }\\
-" ./node_modules/gulp-concat-css/node_modules/rework/node_modules/css/lib/parse/index.js
+"
 
 npm run build
 cd dist

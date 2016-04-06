@@ -19,7 +19,7 @@ npm run build
 cd dist
 git config user.name "${GH_NAME}"
 git config user.email "${GH_EMAIL}"
-git add .
+git add -A
 git commit -m "Deploy from commit ${commit}"
 
 git push -q "https://${GH_TOKEN}@${GH_REF}" master:${GH_BRANCH} > /dev/null 2>&1

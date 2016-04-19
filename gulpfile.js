@@ -18,7 +18,7 @@ gulp.task('home', function() {
 gulp.task('posts', function() {
   return gulp.src('./_posts/**/*.adoc')
     .pipe(post.attachMetadata())
-    .pipe(asciidoctor({ header_footer: false }))
+    .pipe(asciidoctor({ header_footer: true, attributes: ['nofooter'] }))
     .pipe(layout())
     .pipe(post.rename())
     .pipe(post.dest('dist'))

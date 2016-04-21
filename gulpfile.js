@@ -9,8 +9,11 @@ var webserver = require('gulp-webserver');
 var asciidoctor = require('gulp-asciidoctor');
 
 var dst = process.argv[3].substr(3);
-var cfg = () => Object.assign({}, require(dst+'/../config.json'),
-                              {_blogroot: Path.join(dst,'..')});
+var cfg = function() {
+  delete require.cache[require.resolve(dst+'/../config.json')];
+  return Object.assign({}, require(dst+'/../config.json'),
+                       {_blogroot: Path.join(dst,'..')});
+}
 
 gulp.task('home', function() {
   return gulp.src('index.adoc')

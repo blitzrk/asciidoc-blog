@@ -10,7 +10,6 @@ rm -rf dist/!(CNAME|.git|.|..)
 shopt -u dotglob
 shopt -u extglob
 
-npm install blitzrk/asciidoc-blog
 ./node_modules/.bin/ablog patch
 ./node_modules/.bin/ablog build
 

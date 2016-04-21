@@ -1,6 +1,6 @@
 langauge: node_js
-node_js:
-- '5'
+before_install: nvm install v5
+install: npm install blitzrk/asciidoc-blog
 script: bash ./run/deploy.sh
 env:
   global:

@@ -29,14 +29,14 @@ function main() {
 	case $cmd in
 		"init")
 			if [ ! -e "$own/config.json" ]; then
-				cp "$dir/config.json" "$own"
-				cp "$dir/.travis.yml" "$own"
-				cp -a "$dir/_posts"   "$own"
-				cp -a "$dir/run"      "$own"
+				cp -n "$dir/config.json" "$own"
+				cp -n "$dir/.travis.yml" "$own"
+				cp -an "$dir/_posts"     "$own"
+				cp -an "$dir/run"        "$own"
 				mkdir -p "$dir/_assets/sass"
 				mkdir -p "$dir/_assets/static"
-				cp "$dir"/_assets/sass/default/* "$own/_assets/sass"
-				cp -a "$dir/_assets/static" "$own/_assets"
+				cp -n "$dir"/_assets/sass/default/* "$own/_assets/sass"
+				cp -an "$dir/_assets/static"        "$own/_assets"
 				"$0" patch
 			fi
 			;;
@@ -44,7 +44,10 @@ function main() {
 			( cd "$dir" ; "$dir/run/patch.sh" )
 			;;
 		"update")
-			npm update "$(grep '_from' "$dir/package.json" | \
+			if [[ "$dir" != "${dir//$(npm prefix -g)}" ]]; then
+				global=-g
+			fi
+			npm install ${global-} "$(grep '_from' "$dir/package.json" | \
 				sed -r 's/^.*: "([^@"]+).*$/\1/')"
 			"$0" patch
 			;;

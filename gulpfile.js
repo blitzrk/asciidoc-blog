@@ -14,6 +14,7 @@ var cfg = function() {
   return Object.assign({}, require(dst+'/../config.json'),
                        {_blogroot: Path.join(dst,'..')});
 }
+var usr_sass = Path.join(dst, '..', '_assets/sass');
 
 gulp.task('home', function() {
   return gulp.src('index.adoc')
@@ -45,7 +46,7 @@ gulp.task('adoc', ['home', 'posts', 'allposts']);
 
 gulp.task('style', function() {
   return gulp.src([dst+'/../_assets/sass/**/*', './_assets/sass/**/*'])
-    .pipe(sass({ includePaths: ['_assets/sass/'] }).on('error', sass.logError))
+    .pipe(sass({ includePaths: [usr_sass, '_assets/sass/'] }).on('error', sass.logError))
     .pipe(order([])) // Alphabetize
     .pipe(concatCss('bundle.css'))
     .pipe(gulp.dest(dst+'/css'))

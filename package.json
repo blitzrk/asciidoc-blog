@@ -4,7 +4,7 @@
   "description": "Blog generator for GitHub Pages using Asciidoc",
   "bin": { "ablog": "cli.sh" },
   "scripts": {
-    "start": "gulp",
+    "start": "gulp default",
     "build": "gulp build"
   },
   "repository": {

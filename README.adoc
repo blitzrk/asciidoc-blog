@@ -23,17 +23,16 @@ been streamlined for easier install and updating.
 
 [source,bash]
 ----
+$ npm install -g blitzrk/asciidoc-blog
 $ mkdir blog
 $ cd blog
-$ npm install blitzrk/asciidoc-blog
-$ ./node_modules/.bin/ablog init
-$ ./node_modules/.bin/ablog server
+$ ablog init
+$ ablog server
 Webserver started at http://0.0.0.0:8000
 ----
 
-Updating is as easy as `./node_modules/.bin/ablog update`. To use `ablog` more
-easily install with npm's `-g` flag to install it to your path or `--save` it
-and in your `package.json`
+`ablog` may also be installed locally and used either through npm scripts or at
+`./node_modules/.bin/ablog`.
 
 [source,json]
 ----
@@ -56,14 +55,13 @@ Webserver started at http://0.0.0.0:8000
 ^C
 $ npm run build
 ...
-$ npm run ablog -- update
 ----
 
 == Usage
 
 Now that that's out of the way, you can create posts in `_posts`. Posts are just
 normal asciidoc documents. Be sure to give it a proper header, though. To run a test
-server, run `npm start` and to build for production, run `npm run build`, which will
+server, run `ablog server` and to build for production, run `ablog build`, which will
 output your static site at `dist/`.
 
 === Example header

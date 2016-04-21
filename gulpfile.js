@@ -1,6 +1,7 @@
 var gulp = require('gulp');
 var sass = require('gulp-sass');
 var post = require('./lib/post');
+var Path = require('path');
 var order = require('gulp-order');
 var layout = require('./lib/layout');
 var concatCss = require('gulp-concat-css');
@@ -8,7 +9,8 @@ var webserver = require('gulp-webserver');
 var asciidoctor = require('gulp-asciidoctor');
 
 var dst = process.argv[3].substr(3);
-var cfg = require.bind(null, dst+'/../config.json');
+var cfg = () => Object.assign({}, require(dst+'/../config.json'),
+                              {_blogroot: Path.join(dst,'..')});
 
 gulp.task('home', function() {
   return gulp.src('index.adoc')

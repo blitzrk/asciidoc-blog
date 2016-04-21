@@ -8,9 +8,10 @@ function usage() {
 	>&2 echo
 	>&2 echo "Commands:"
 	>&2 echo "  init"
-	>&2 echo "  update"
 	>&2 echo "  build [default]"
 	>&2 echo "  server"
+	>&2 echo "  patch"
+	>&2 echo "  update"
 	exit 1
 }
 
@@ -27,22 +28,22 @@ function main() {
 
 	case $cmd in
 		"init")
-			if [ ! -d "$own/run" ]; then
+			if [ ! -e "$own/config.json" ]; then
 				cp "$dir/config.json" "$own"
 				cp "$dir/.travis.yml" "$own"
 				cp -a "$dir/_posts"   "$own"
 				cp -a "$dir/run"      "$own"
 				mkdir -p "$own/_assets/sass"
 				cp -a "$dir/_assets/static" "$own/_assets"
-				( cd "$own" ; ./run/patch.sh )
+				( cd "$own" ; "$0" patch )
 			fi
 			;;
+		"patch")
+			"$dir/run/patch.sh"
+			;;
 		"update")
-			[ ! -d "$own/run" ] && "$0" init
-			( cd "$own"
-			  npm update "$(grep '_from' package.json | \
-				 sed -r 's/^.*: "([^@"]+).*$/\1/')"
-			)
+			npm update "$(grep '_from' "$dir/package.json" | \
+				sed -r 's/^.*: "([^@"]+).*$/\1/')"
 			;;
 		"build")
 			if [ ! -e "$own/config.json" ]; then

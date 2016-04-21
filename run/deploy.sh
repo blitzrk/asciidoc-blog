@@ -10,12 +10,10 @@ rm -rf dist/!(CNAME|.git|.|..)
 shopt -u dotglob
 shopt -u extglob
 
-npm install
+npm install blitzrk/asciidoc-blog
+./node_modules/.bin/ablog patch
+./node_modules/.bin/ablog build
 
-#patch reworkcss/css
-bash ./run/patch.sh
-
-npm run build
 cd dist
 git config user.name "${GH_NAME}"
 git config user.email "${GH_EMAIL}"

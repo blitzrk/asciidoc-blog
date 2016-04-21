@@ -54,6 +54,8 @@ function main() {
 			npm install ${global-} "$(grep '_from' "$dir/package.json" | \
 				sed -r 's/^.*: "([^@"]+).*$/\1/')"
 			"$0" patch
+			echo 'Now run an "ablog init" to get any new default files'
+			echo
 			;;
 		"build")
 			if [ ! -e "$own/config.json" ]; then

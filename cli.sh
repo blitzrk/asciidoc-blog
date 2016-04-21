@@ -28,17 +28,21 @@ function main() {
 
 	case $cmd in
 		"init")
-			if [ ! -e "$own/config.json" ]; then
-				cp -n "$dir/config.json" "$own"
-				cp -n "$dir/.travis.yml" "$own"
-				cp -an "$dir/_posts"     "$own"
-				cp -an "$dir/run"        "$own"
-				mkdir -p "$dir/_assets/sass"
-				mkdir -p "$dir/_assets/static"
-				cp -n "$dir"/_assets/sass/default/* "$own/_assets/sass"
-				cp -an "$dir/_assets/static"        "$own/_assets"
-				"$0" patch
-			fi
+			# Copy default styles and other assets
+			mkdir -p "$dir/_assets/sass"
+			cp -n "$dir"/_assets/sass/default/* "$own/_assets/sass/"
+			[ ! -d "$own/_assets/static" ] && cp -r "$dir/_assets/static" "$own/_assets/"
+
+			# Copy default config
+			cp -n "$dir/config.json" "$own"
+			cp -n "$dir/.travis.yml" "$own"
+			[ ! -d "$own/run" ] && cp -r "$dir/_run"   "$own"
+
+			# Copy example posts
+			[ ! -d "$own/_posts" ] && cp -r "$dir/_posts" "$own"
+
+			# Patch if needed
+			"$0" patch
 			;;
 		"patch")
 			( cd "$dir" ; "$dir/run/patch.sh" )

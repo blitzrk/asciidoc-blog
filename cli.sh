@@ -35,11 +35,11 @@ function main() {
 				cp -a "$dir/run"      "$own"
 				mkdir -p "$own/_assets/sass"
 				cp -a "$dir/_assets/static" "$own/_assets"
-				( cd "$own" ; "$0" patch )
+				"$0" patch
 			fi
 			;;
 		"patch")
-			"$dir/run/patch.sh"
+			( cd "$dir" ; "$dir/run/patch.sh" )
 			;;
 		"update")
 			npm update "$(grep '_from' "$dir/package.json" | \

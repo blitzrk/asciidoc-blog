@@ -13,30 +13,51 @@ or as fast as Hugo (yet!). But if you don't need a million themes to choose from
 and you just want to deploy asciidoc to GitHub Pages as fast and easily as possible,
 then this is the project for you. No adding front matter to your posts that messes
 up your syntax highlighter, no learning Ruby or Go to understand what's going on
-if you're just a humble Javascript/Node.js developer; just fork this repo and you're
-half way to a blog!
+if you're just a humble Javascript/Node.js developer; just `npm install blitzrk/
+asciidoc-blog` and you're half way to a blog!
 
 == Installation
 
-To get your own blog set up, fork this repository and run `npm install` at the base.
-Unfortunately, there's currently a bug in a dependency's dependency, so we'll need
-to patch it. (There's already a PR in to fix it, so I'll update this when it gets
-merged.) For now, an install might look like this.
+No longer is creating and asciidoc-blog tied to forking this repo. The process has
+been streamlined for easier install and updating.
 
 [source,bash]
 ----
 $ mkdir blog
 $ cd blog
-$ git init
-$ git remote add fork https://github.com/blitzrk/asciidoc-blog.git
-$ git remote add origin https://github.com/<user>/<repo>.git
-$ git pull fork master
-$ npm install
-$ ./run/patch.sh
-$ npm start
+$ npm install blitzrk/asciidoc-blog
+$ ./node_modules/.bin/ablog init
+$ ./node_modules/.bin/ablog server
+Webserver started at http://0.0.0.0:8000
 ----
 
-Then you can update at any time with `./run/update.sh`, but you may have to perform a merge.
+Updating is as easy as `./node_modules/.bin/ablog update`. To use `ablog` more
+easily install with npm's `-g` flag to install it to your path or `--save` it
+and in your `package.json`
+
+[source,json]
+----
+{
+  "scripts": {
+    "start": "ablog server",
+    "build": "ablog build",
+    "ablog": "ablog"
+  }
+}
+----
+
+Then
+
+[source,bash]
+----
+$ npm run ablog -- init
+$ npm start
+Webserver started at http://0.0.0.0:8000
+^C
+$ npm run build
+...
+$ npm run ablog -- update
+----
 
 == Usage
 
@@ -49,9 +70,10 @@ output your static site at `dist/`.
 
 The header doesn't have anything special added to it from the official specification.
 
-[source,asciidoc]
+:equals: =
+[source,asciidoc,subs="verbatim,attributes"]
 ----
-= Title: Still Part of Title: Subtitle
+{equals} Title: Still Part of Title: Subtitle
 Author Name <author@email.com>
 v1.0.3, 1970-01-01 00:00: Comment
 :toc:
@@ -65,20 +87,18 @@ anything.
 == Configuration
 
 Currently there are two locations for configuring your site. Most options may be
-found in `config.json`. Colors, however, are located in
-`_assets/sass/_constants.scss`. Colors can be changed and will automatically
-update if you're running the test server (just refresh your page), but changes to
-`config.json` require a full restart of the test server to take effect.
+found in `config.json`. Colors, however, are located in `_assets/sass/_constants.scss`.
+Colors can be changed and will automatically update if you're running the test
+server (just refresh your page).
 
 === HTTPS
 
-If "https" is set to true, then a provided script will be
-automatically run that redirects users to the https version of your site. (This
-must be set up separately. I will write a future post about it.) For testing
-purposes, it will only redirect if the host has no subdomain or a subdomain of
-www. This allows unsecure running of a test server with something like ngrok
-without messing up your configuration. To override this behavior, set
-"httpsSubdomain" to true.
+If "https" is set to true, then a provided script will be automatically run that 
+redirects users to the https version of your site. (This must be set up separately.
+I will write a future post about it.) For testing purposes, it will only redirect
+if the host has no subdomain or a subdomain of www. This allows unsecure running
+of a test server with something like ngrok without messing up your configuration.
+To override this behavior, set "httpsSubdomain" to true.
 
 == Deploying Your Site
 
@@ -99,7 +119,7 @@ permissions for only `public_repo`. Then encrypt it with the travis CLI tool.
 
 [source,bash]
 ----
-$ cd /path/to/asciidoc-blog
+$ cd /path/to/blog
 $ gem install travis
 $ travis encrypt GH_TOKEN=<paste token from browser> --add
 ----
@@ -115,8 +135,7 @@ TODO: CNAME file, changing repo name
 
 All that Travis does is run a simple script with some environment variables set.
 You can do this, too! Either follow the steps in `run/travis.sh`, skipping where
-appropriate (e.g. if you already ran `npm install` and patched `reworkcss/css`),
-or run
+appropriate (e.g. if you already installed/inited asciidoc-blog), or run
 
 [source,bash]
 ----
@@ -134,4 +153,5 @@ $ GH_NAME="<your name/Travis CI>" GH_EMAIL="<email>" GH_REF="github.com/<usernam
 - [x] Add favicon
 - [x] Sidebar configuration
 - [x] Deploy with Travis CI
-- [ ] Write first post
+- [x] Write first post
+- [ ] Make into self-contained package

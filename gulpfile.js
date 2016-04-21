@@ -39,7 +39,7 @@ gulp.task('allposts', function() {
 gulp.task('adoc', ['home', 'posts', 'allposts']);
 
 gulp.task('style', function() {
-  return gulp.src([dst+'../_assets/sass/**/*', './_assets/sass/**/*'])
+  return gulp.src([dst+'/../_assets/sass/**/*', './_assets/sass/**/*'])
     .pipe(sass({ includePaths: ['_assets/sass/'] }).on('error', sass.logError))
     .pipe(order([])) // Alphabetize
     .pipe(concatCss('bundle.css'))
@@ -47,7 +47,7 @@ gulp.task('style', function() {
 });
 
 gulp.task('static', ['adoc'], function() {
-  return gulp.src([dst+'../_assets/static/**/*', './_assets/static/**/*'])
+  return gulp.src(dst+'/../_assets/static/**/*')
     .pipe(gulp.dest(dst))
 });
 
@@ -65,7 +65,7 @@ gulp.task('watch', function() {
   gulp.watch([dst+'/../config.json'], ['adoc']);
   gulp.watch([dst+'/../**/*.adoc', './**/*.adoc', '!./README.adoc'], ['adoc']);
   gulp.watch([dst+'/../_assets/sass/**/*', './_assets/sass/**/*'], ['style']);
-  gulp.watch([dst+'/../_assets/static/**/*', './_assets/static/**/*'], ['static']);
+  gulp.watch([dst+'/../_assets/static/**/*'], ['static']);
 });
 
 gulp.task('default', ['watch','serve']);

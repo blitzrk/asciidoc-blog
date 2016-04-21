@@ -31,6 +31,8 @@ function main() {
 				cp "$dir/config.json" "$own"
 				cp "$dir/.travis.yml" "$own"
 				cp -a "$dir/run"      "$own"
+				mkdir -p "$own/_assets/sass"
+				cp -a "$dir/_assets/static" "$own/_assets"
 				( cd "$own" ; ./run/patch.sh )
 			fi
 			;;

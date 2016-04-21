@@ -2,6 +2,7 @@
   "name": "AsciidocBlog",
   "version": "1.0.0",
   "description": "Blog generator for GitHub Pages using Asciidoc",
+  "bin": { "ablog": "cli.sh" },
   "scripts": {
     "start": "gulp",
     "build": "gulp build"
@@ -12,7 +13,7 @@
   },
   "author": "Ben Krieger <blitzrk@gmail.com>",
   "license": "MIT",
-  "devDependencies": {
+  "dependencies": {
     "asciidoctor.js": "^1.5.5-1",
     "gulp": "^3.9.1",
     "gulp-asciidoctor": "^1.0.7",

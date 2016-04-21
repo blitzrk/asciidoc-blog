@@ -7,21 +7,23 @@ var concatCss = require('gulp-concat-css');
 var webserver = require('gulp-webserver');
 var asciidoctor = require('gulp-asciidoctor');
 
+var dest = "../../dist"
+
 gulp.task('home', function() {
   return gulp.src('index.adoc')
     .pipe(post.inject())
     .pipe(asciidoctor({ header_footer: false }))
     .pipe(layout())
-    .pipe(gulp.dest('dist'))
+    .pipe(gulp.dest(dest))
 });
 
 gulp.task('posts', function() {
-  return gulp.src('./_posts/**/*.adoc')
+  return gulp.src('../../_posts/**/*.adoc')
     .pipe(post.attachMetadata())
     .pipe(asciidoctor({ header_footer: true, attributes: ['nofooter'] }))
     .pipe(layout())
     .pipe(post.rename())
-    .pipe(post.dest('dist'))
+    .pipe(post.dest(dest))
 });
 
 gulp.task('allposts', function() {
@@ -30,7 +32,7 @@ gulp.task('allposts', function() {
     .pipe(asciidoctor({ header_footer: false }))
     .pipe(layout())
     .pipe(post.rename())
-    .pipe(gulp.dest('dist/posts'))
+    .pipe(gulp.dest(dest+'/posts'))
 });
 
 gulp.task('adoc', ['home', 'posts', 'allposts']);
@@ -40,18 +42,18 @@ gulp.task('style', function() {
     .pipe(sass({ includePaths: ['_assets/sass/'] }).on('error', sass.logError))
     .pipe(order([])) // Alphabetize
     .pipe(concatCss('bundle.css'))
-    .pipe(gulp.dest('dist/css'))
+    .pipe(gulp.dest(dest+'/css'))
 });
 
 gulp.task('static', ['adoc'], function() {
   return gulp.src('_assets/static/**/*')
-    .pipe(gulp.dest('dist'))
+    .pipe(gulp.dest(dest))
 });
 
 gulp.task('build', ['adoc', 'style', 'static']);
 
 gulp.task('serve', ['build'], function() {
-  return gulp.src('dist')
+  return gulp.src(dest)
     .pipe(webserver({
       host: '0.0.0.0',
       port: 8000

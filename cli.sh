@@ -30,6 +30,7 @@ function main() {
 			if [ ! -d "$own/run" ]; then
 				cp "$dir/config.json" "$own"
 				cp "$dir/.travis.yml" "$own"
+				cp -a "$dir/_posts"   "$own"
 				cp -a "$dir/run"      "$own"
 				mkdir -p "$own/_assets/sass"
 				cp -a "$dir/_assets/static" "$own/_assets"

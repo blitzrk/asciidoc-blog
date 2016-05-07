@@ -1,3 +1,4 @@
+var del = require('del');
 var gulp = require('gulp');
 var sass = require('gulp-sass');
 var post = require('./lib/post');
@@ -16,6 +17,10 @@ var cfg = function() {
 }
 var usr_sass = Path.join(dst, '..', '_assets/sass');
 
+gulp.task('clean:posts', function() {
+  del.sync([dst+'/post/*'], {force: true});
+});
+
 gulp.task('home', function() {
   return gulp.src('index.adoc')
     .pipe(post.inject(cfg()))
@@ -24,7 +29,7 @@ gulp.task('home', function() {
     .pipe(gulp.dest(dst))
 });
 
-gulp.task('posts', function() {
+gulp.task('posts', ['clean:posts'], function() {
   return gulp.src(dst+'/../_posts/**/*.adoc')
     .pipe(post.attachMetadata())
     .pipe(asciidoctor({ header_footer: true, attributes: ['nofooter'] }))
